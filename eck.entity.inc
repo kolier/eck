@@ -522,6 +522,7 @@ function eck__entity__view($entity_type_name, $bundle_name, $id) {
   }
   
   $entity_view[$entity->entityType()][$entity->id] = array_merge($property_view, $entity_view[$entity->entityType()][$entity->id]);
+  $entity->content = &$entity_view[$entity->entityType()][$entity->id];
   
   eck_property_behavior_invoke_plugin($entity_type, 'entity_view',
     array('entity' => $entity));

@@ -115,6 +115,7 @@ class DBObject implements Iterator{
     ->fetchAssoc();
     
     if($result){
+      $this->is_new = FALSE;
       foreach($result as $property => $value){
         if(in_array($property, $this->serialize)){
           $value = drupal_json_decode($value);
@@ -122,8 +123,6 @@ class DBObject implements Iterator{
         $this->{$property} = $value;
       }
     }
-    
-    $this->is_new = FALSE;
   }
   
   public function delete(){
