@@ -31,6 +31,7 @@ function eck_property_behavior_invoke_plugin($entity_type, $function_name, $all 
  $specific = array()){
   
   $properties = $entity_type->properties;
+  $all['entity_type'] = $entity_type->name;
   $returns = array();
   
   foreach($properties as $property => $info){
@@ -62,6 +63,7 @@ function eck_property_behavior_invoke_plugin($entity_type, $function_name, $all 
 function eck_property_behavior_invoke_plugin_alter($entity_type, $function_name, $var){
   
   $properties = $entity_type->properties;
+  $var['entity_type'] = $entity_type->name;
   $return = $var;
   
   foreach($properties as $property => $info){
