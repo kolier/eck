@@ -48,7 +48,7 @@ function eck_title_property_widget($property, $vars){
     '#type' => 'textfield',
     '#title' => $vars['properties'][$property]['label'],
     '#default_value' => $title,
-    '#required' => TRUE
+    //'#required' => TRUE
   );
 }
 
