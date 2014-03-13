@@ -494,6 +494,7 @@ function eck__entity__form_submit($form, &$state) {
   $properties = $entity_type->properties;
   
   $wrapper = NULL;
+  $data = array();
   //If we find a value set for a property lets just set it
   foreach($properties as $property => $info){
     $form_value = _eck_form_property_value($state, $property);
@@ -504,8 +505,11 @@ function eck__entity__form_submit($form, &$state) {
       
       //lets give the behavior a chance to manipulate the data before it is set
       $vars = array('data' => $form_value);
-      $data = eck_property_behavior_invoke_plugin($entity_type, 'pre_set', 
-      $vars);
+      // @issue This would call with other property data.
+      //$data = eck_property_behavior_invoke_plugin($entity_type, 'pre_set', $vars);
+      if ($function = eck_property_behavior_implements($entity_type, $property, 'pre_set')) {
+        $data[$property] = $function($property, $vars); 
+      }
       
       if(array_key_exists($property, $data)){
         $form_value = $data[$property];
