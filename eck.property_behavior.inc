@@ -31,7 +31,6 @@ function eck_property_behavior_invoke_plugin($entity_type, $function_name, $all 
  $specific = array()){
   
   $properties = $entity_type->properties;
-  $all['entity_type'] = $entity_type->name;
   $returns = array();
   
   foreach($properties as $property => $info){
